@@ -48,10 +48,12 @@ public class Array<E> {
 
     // 在index索引的位置插入一个新元素e
     public void add(int index, E e){
-        if(size == data.length)
-            throw new IllegalArgumentException("AddLast fail, Array is full");
         if(index < 0 || index > size)
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+
+        if(size == data.length) {
+            resize(size*2);
+        }
 
         for (int i = size; i > index; i--) {
             data[i] = data[i-1];
@@ -103,7 +105,13 @@ public class Array<E> {
         for(int i = index; i < size - 1 ; i++) {
             data[i] = data[i+1];
         }
+
         size--;
+        data[size] = null;
+
+        if(size == data.length/4 && data.length/2 != 0) {
+            resize(data.length/2);
+        }
         return res;
     }
 
@@ -137,6 +145,15 @@ public class Array<E> {
         }
         res.append(']');
         return res.toString();
+    }
+
+    // 将数组空间的容量变成newCapacity大小
+    private void resize(int newCapacity){
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
 }
