@@ -1,25 +1,24 @@
 public class Main {
 
     public static void main(String[] args) {
-        Array arr = new Array(20);
-        for(int i = 0 ; i < 10 ; i ++)
-            arr.addLast(i);
-        System.out.println(arr);
+        LinkedList<Integer> llist = new LinkedList();
 
-        arr.add(1, 100);
-        System.out.println(arr);
+        for (int i = 0; i <= 5; i++ ) {
+            llist.addFirst(i);
+            System.out.println(llist.toString());
+        }
 
-        arr.addFirst(-1);
-        System.out.println(arr);
-        // [-1, 0, 100, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        llist.add(2, 666);
+        System.out.println(llist);
 
-        arr.remove(2);
-        System.out.println(arr);
+        System.out.println(llist.remove(2));
+        System.out.println(llist.toString());
 
-        arr.removeElement(4);
-        System.out.println(arr);
+        System.out.println(llist.removeFirst());
+        System.out.println(llist.toString());
 
-        arr.removeFirst();
-        System.out.println(arr);
+        System.out.println(llist.removeLast());
+        System.out.println(llist.toString());
+
     }
 }
